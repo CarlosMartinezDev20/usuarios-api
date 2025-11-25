@@ -246,18 +246,4 @@ php artisan migrate:fresh --seed
 4. **Validación**: Todos los endpoints validan los datos de entrada.
 5. **Roles**: Solo dos roles disponibles: `admin` y `user`.
 
-## 📄 Licencia
 
-Este proyecto es de código abierto bajo la licencia MIT.
-
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, abre un issue o pull request.
-
-## 📞 Soporte
-
-Para preguntas o soporte, por favor abre un issue en el repositorio.
-
----
-
-<p align="center">Desarrollado con ❤️ usando Laravel</p>
