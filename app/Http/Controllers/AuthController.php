@@ -169,6 +169,64 @@ class AuthController extends Controller
     }
 
     /**
+     * Register a new user (public).
+     *
+     * Permite crear un nuevo usuario y devuelve un token de acceso.
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function register(Request $request): JsonResponse
+    {
+        try {
+            $data = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|string|min:8|confirmed',
+                'role' => 'nullable|string|in:user,admin',
+            ]);
+
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'role' => $data['role'] ?? 'user',
+                'isActive' => true,
+            ]);
+
+            // Crear token con expiración de 5 minutos
+            $token = $user->createToken(
+                'auth_token',
+                ['*'],
+                now()->addMinutes(5)
+            )->plainTextToken;
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Registro exitoso',
+                'data' => [
+                    'user' => $user,
+                    'token' => $token,
+                    'token_type' => 'Bearer',
+                    'expires_in' => 300,
+                ]
+            ], 201);
+        } catch (\Illuminate\Validation\ValidationException $ve) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Datos inválidos',
+                'errors' => $ve->errors()
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error al registrar usuario',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    /**
      * Logout from all devices.
      * 
      * Revoca todos los tokens del usuario (logout de todos los dispositivos)

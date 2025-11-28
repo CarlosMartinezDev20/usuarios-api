@@ -1,346 +1,384 @@
 {
-  "info": {
-    "name": "API de Usuarios - Laravel",
-    "description": "Colección de endpoints para la API de gestión de usuarios",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Authentication",
-      "item": [
-        {
-          "name": "Login",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"password123\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/auth/login",
-              "host": ["{{base_url}}"],
-              "path": ["auth", "login"]
-            }
-          }
-        },
-        {
-          "name": "Get User Info",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/auth/me",
-              "host": ["{{base_url}}"],
-              "path": ["auth", "me"]
-            }
-          }
-        },
-        {
-          "name": "Refresh Token",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/auth/refresh",
-              "host": ["{{base_url}}"],
-              "path": ["auth", "refresh"]
-            }
-          }
-        },
-        {
-          "name": "Logout",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/auth/logout",
-              "host": ["{{base_url}}"],
-              "path": ["auth", "logout"]
-            }
-          }
-        },
-        {
-          "name": "Logout All Devices",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/auth/logout-all",
-              "host": ["{{base_url}}"],
-              "path": ["auth", "logout-all"]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "Users CRUD",
-      "item": [
-        {
-          "name": "Get All Users",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/users?page=1",
-              "host": ["{{base_url}}"],
-              "path": ["users"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "1"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "name": "Create User",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\": \"Nuevo Usuario\",\n    \"email\": \"nuevo@example.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\",\n    \"role\": \"user\",\n    \"isActive\": true\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/users",
-              "host": ["{{base_url}}"],
-              "path": ["users"]
-            }
-          }
-        },
-        {
-          "name": "Get User by ID",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/users/1",
-              "host": ["{{base_url}}"],
-              "path": ["users", "1"]
-            }
-          }
-        },
-        {
-          "name": "Update User",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"name\": \"Usuario Actualizado\",\n    \"email\": \"actualizado@example.com\",\n    \"role\": \"admin\",\n    \"isActive\": true\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/users/1",
-              "host": ["{{base_url}}"],
-              "path": ["users", "1"]
-            }
-          }
-        },
-        {
-          "name": "Delete User",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/users/1",
-              "host": ["{{base_url}}"],
-              "path": ["users", "1"]
-            }
-          }
-        },
-        {
-          "name": "Get Deleted Users",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/users/trashed/list",
-              "host": ["{{base_url}}"],
-              "path": ["users", "trashed", "list"]
-            }
-          }
-        },
-        {
-          "name": "Restore User",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/users/1/restore",
-              "host": ["{{base_url}}"],
-              "path": ["users", "1", "restore"]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "Statistics",
-      "item": [
-        {
-          "name": "Get All Statistics",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/statistics",
-              "host": ["{{base_url}}"],
-              "path": ["statistics"]
-            }
-          }
-        },
-        {
-          "name": "Get Daily Statistics",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/statistics/daily",
-              "host": ["{{base_url}}"],
-              "path": ["statistics", "daily"]
-            }
-          }
-        },
-        {
-          "name": "Get Weekly Statistics",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/statistics/weekly",
-              "host": ["{{base_url}}"],
-              "path": ["statistics", "weekly"]
-            }
-          }
-        },
-        {
-          "name": "Get Monthly Statistics",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/statistics/monthly",
-              "host": ["{{base_url}}"],
-              "path": ["statistics", "monthly"]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "Health Check",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}/health",
-          "host": ["{{base_url}}"],
-          "path": ["health"]
-        }
-      }
-    }
-  ],
-  "variable": [
-    {
-      "key": "base_url",
-      "value": "http://localhost:8000/api",
-      "type": "string"
-    },
-    {
-      "key": "token",
-      "value": "",
-      "type": "string"
-    }
-  ]
+	"info": {
+		"_postman_id": "usuarios-api-collection",
+		"name": "API Gestión de Usuarios",
+		"description": "Colección completa para probar la API de gestión de usuarios con autenticación por token (5 minutos de expiración)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000/api",
+			"type": "string"
+		},
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "user_id",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "1. Autenticación",
+			"item": [
+				{
+					"name": "Registrar Usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"auth_token\", jsonData.data.token);",
+									"    pm.collectionVariables.set(\"user_id\", jsonData.data.user.id);",
+									"    pm.environment.set(\"auth_token\", jsonData.data.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Usuario Test\",\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "Registra un nuevo usuario y devuelve un token de acceso con expiración de 5 minutos"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"auth_token\", jsonData.data.token);",
+									"    pm.collectionVariables.set(\"user_id\", jsonData.data.user.id);",
+									"    pm.environment.set(\"auth_token\", jsonData.data.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "Inicia sesión con un usuario existente y devuelve un token de acceso con expiración de 5 minutos"
+					},
+					"response": []
+				},
+				{
+					"name": "Refrescar Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"auth_token\", jsonData.data.token);",
+									"    pm.environment.set(\"auth_token\", jsonData.data.token);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/refresh",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						},
+						"description": "Refresca el token actual antes de que expire (5 minutos). Revoca el token anterior y genera uno nuevo."
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Cierra la sesión del usuario y revoca el token actual"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para autenticación: registro, login, refresh y logout"
+		},
+		{
+			"name": "2. CRUD Usuarios",
+			"item": [
+				{
+					"name": "Crear Usuario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 201) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set(\"user_id\", jsonData.data.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Nuevo Usuario\",\n    \"email\": \"nuevo@example.com\",\n    \"password\": \"password123\",\n    \"password_confirmation\": \"password123\",\n    \"role\": \"user\",\n    \"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Crea un nuevo usuario en el sistema (requiere autenticación)"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Obtiene la lista de todos los usuarios (paginado, 15 por página)"
+					},
+					"response": []
+				},
+				{
+					"name": "Ver Usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"{{user_id}}"
+							]
+						},
+						"description": "Obtiene la información de un usuario específico por su ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Usuario",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Usuario Actualizado\",\n    \"email\": \"actualizado@example.com\",\n    \"role\": \"user\",\n    \"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"{{user_id}}"
+							]
+						},
+						"description": "Actualiza la información de un usuario existente"
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/{{user_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"{{user_id}}"
+							]
+						},
+						"description": "Elimina un usuario del sistema (soft delete)"
+					},
+					"response": []
+				}
+			],
+			"description": "Operaciones CRUD para gestión de usuarios"
+		},
+		{
+			"name": "3. Estadísticas",
+			"item": [
+				{
+					"name": "Estadísticas Diarias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/statistics/daily",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"statistics",
+								"daily"
+							]
+						},
+						"description": "Obtiene estadísticas de usuarios registrados por día (últimos 30 días)"
+					},
+					"response": []
+				},
+				{
+					"name": "Estadísticas Semanales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/statistics/weekly",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"statistics",
+								"weekly"
+							]
+						},
+						"description": "Obtiene estadísticas de usuarios registrados por semana (últimas 12 semanas)"
+					},
+					"response": []
+				},
+				{
+					"name": "Estadísticas Mensuales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/statistics/monthly",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"statistics",
+								"monthly"
+							]
+						},
+						"description": "Obtiene estadísticas de usuarios registrados por mes (últimos 12 meses)"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints para visualizar estadísticas de registros por día, semana y mes"
+		}
+	]
 }
