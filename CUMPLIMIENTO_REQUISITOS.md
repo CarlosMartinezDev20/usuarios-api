@@ -210,14 +210,13 @@ usuarios-api/
 
 ## 🧪 Cómo Probar los Endpoints
 
-### 1. Registrar Usuario y Obtener Token
+### 1. Registrar Usuario (Obtener Token)
 ```bash
 POST http://127.0.0.1:8000/api/auth/register
 Body: {
   "name": "Juan Pérez",
   "email": "juan@example.com",
-  "password": "password123",
-  "password_confirmation": "password123"
+  "password": "password123"
 }
 
 # Respuesta incluye token que expira en 5 minutos
@@ -240,7 +239,6 @@ Body: {
   "name": "Juan Pérez",
   "email": "juan@example.com",
   "password": "password123",
-  "password_confirmation": "password123",
   "role": "user",
   "isActive": true
 }

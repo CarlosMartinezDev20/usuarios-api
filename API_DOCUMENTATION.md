@@ -258,7 +258,6 @@ Authorization: Bearer {token}
     "name": "Nuevo Usuario",
     "email": "nuevo@example.com",
     "password": "password123",
-    "password_confirmation": "password123",
     "role": "user",
     "isActive": true
 }
@@ -268,7 +267,6 @@ Authorization: Bearer {token}
 - `name` (requerido): Nombre del usuario
 - `email` (requerido): Email único
 - `password` (requerido): Mínimo 8 caracteres
-- `password_confirmation` (requerido): Confirmación de contraseña
 - `role` (opcional): "admin" o "user" (default: "user")
 - `isActive` (opcional): true o false (default: true)
 
@@ -329,7 +327,6 @@ Authorization: Bearer {token}
     "name": "Nombre Actualizado",
     "email": "actualizado@example.com",
     "password": "newpassword123",
-    "password_confirmation": "newpassword123",
     "role": "admin",
     "isActive": false
 }
@@ -494,8 +491,7 @@ curl -X POST http://localhost:8000/api/users \
   -d '{
     "name": "Test User",
     "email": "test@example.com",
-    "password": "password123",
-    "password_confirmation": "password123"
+    "password": "password123"
   }'
 ```
 

@@ -130,7 +130,6 @@ Content-Type: application/json
     "name": "Usuario de Prueba",
     "email": "test@prueba.com",
     "password": "password123",
-    "password_confirmation": "password123",
     "role": "user",
     "isActive": true
 }
@@ -150,7 +149,6 @@ curl -X POST http://localhost:8000/api/users \
     "name": "Usuario de Prueba",
     "email": "test@prueba.com",
     "password": "password123",
-    "password_confirmation": "password123",
     "role": "user"
   }'
 ```
@@ -183,8 +181,7 @@ curl -X POST http://localhost:8000/api/users \
 {
     "name": "Usuario",
     "email": "admin@example.com",
-    "password": "password123",
-    "password_confirmation": "password123"
+    "password": "password123"
 }
 ```
 

@@ -24,9 +24,9 @@ class UserController extends Controller
      */
     public function index(): JsonResponse
     {
-        // Obtener usuarios paginados (15 por página)
-        $users = User::where('isActive', true)
-            ->orderBy('created_at', 'desc')
+        // Obtener todos los usuarios paginados (15 por página)
+        // No filtramos por isActive para permitir gestionar usuarios inactivos
+        $users = User::orderBy('created_at', 'desc')
             ->paginate(15);
 
         return response()->json([

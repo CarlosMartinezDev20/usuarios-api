@@ -24,7 +24,7 @@ class StoreUserRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8',
             'role' => 'sometimes|in:admin,user',
             'isActive' => 'sometimes|boolean',
         ];
@@ -44,8 +44,7 @@ class StoreUserRequest extends FormRequest
             'email.unique' => 'Este email ya está registrado.',
             'password.required' => 'La contraseña es obligatoria.',
             'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
-            'password.confirmed' => 'La confirmación de contraseña no coincide.',
-            'role.in' => 'El rol debe ser admin o user.',
+            'role.in' => 'El rol debe ser admin o user.'
         ];
     }
 }

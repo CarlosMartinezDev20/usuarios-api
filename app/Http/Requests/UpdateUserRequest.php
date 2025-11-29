@@ -26,7 +26,7 @@ class UpdateUserRequest extends FormRequest
         return [
             'name' => 'sometimes|string|max:255',
             'email' => 'sometimes|string|email|max:255|unique:users,email,' . $userId,
-            'password' => 'sometimes|string|min:8|confirmed',
+            'password' => 'sometimes|string|min:8',
             'role' => 'sometimes|in:admin,user',
             'isActive' => 'sometimes|boolean',
         ];
@@ -44,8 +44,7 @@ class UpdateUserRequest extends FormRequest
             'email.email' => 'El email debe ser válido.',
             'email.unique' => 'Este email ya está registrado.',
             'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
-            'password.confirmed' => 'La confirmación de contraseña no coincide.',
-            'role.in' => 'El rol debe ser admin o user.',
+            'role.in' => 'El rol debe ser admin o user.'
         ];
     }
 }
